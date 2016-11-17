@@ -1,3 +1,4 @@
+import { DashboardEffects } from './effects/dashboard';
 import { HeroEffects } from './effects/hero';
 import { EffectsModule } from '@ngrx/effects';
 import { HeroActions } from './actions/hero';
@@ -25,12 +26,13 @@ import reducer from './reducers/index';
     StoreModule.provideStore(reducer),
     StoreDevtoolsModule.instrumentStore({
       monitor: useLogMonitor({
-        visible: true,
+        visible: false,
         position: 'right'
       })
     }),
     StoreLogMonitorModule,
-    EffectsModule.run(HeroEffects)
+    EffectsModule.run(HeroEffects),
+    EffectsModule.run(DashboardEffects)
   ],
   declarations: [
     AppComponent,
