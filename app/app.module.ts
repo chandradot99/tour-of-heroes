@@ -1,3 +1,5 @@
+import { HeroEffects } from './effects/hero';
+import { EffectsModule } from '@ngrx/effects';
 import { HeroActions } from './actions/hero';
 import { NgModule }             from '@angular/core';
 import { BrowserModule }        from '@angular/platform-browser';
@@ -11,6 +13,7 @@ import { AppRoutingModule }     from './app-routing.module';
 import { StoreDevtoolsModule }  from '@ngrx/store-devtools';
 import { StoreModule }          from '@ngrx/store';
 import { StoreLogMonitorModule, useLogMonitor } from '@ngrx/store-log-monitor';
+import reducer from './reducers/index';
 
 
 
@@ -19,14 +22,15 @@ import { StoreLogMonitorModule, useLogMonitor } from '@ngrx/store-log-monitor';
     BrowserModule,
     FormsModule,
     AppRoutingModule,
-    StoreModule.provideStore({}),
+    StoreModule.provideStore(reducer),
     StoreDevtoolsModule.instrumentStore({
       monitor: useLogMonitor({
         visible: true,
         position: 'right'
       })
     }),
-    StoreLogMonitorModule
+    StoreLogMonitorModule,
+    EffectsModule.run(HeroEffects)
   ],
   declarations: [
     AppComponent,

@@ -7,3 +7,12 @@ export type HeroListState = Hero[];
 const initialState: HeroListState = [];
 
 
+export function reducer(state = initialState, action: Action): HeroListState {
+    var heroActions = new HeroActions;
+    switch (action.type){
+        case 'Load Heroes Success': {
+            return action.payload;
+        }
+    }
+
+}
